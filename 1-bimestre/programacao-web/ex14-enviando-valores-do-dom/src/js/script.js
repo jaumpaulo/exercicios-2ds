@@ -1,8 +1,7 @@
-const input = document.getElementById("nome")
-const botao = document.getElementById("mostrar")
-const resultado = document.getElementById("resultado")
+const input = document.getElementById("nome");
+const botao = document.getElementById("mostrar");
+const resultado = document.getElementById("resultado");
 
 botao.addEventListener("click", () => {
-    const nome = input.value
-    resultado.textContent = "Olá, " + nome
-})
+  resultado.textContent = "Olá, " + input.value;
+});
