@@ -35,7 +35,7 @@ Previsão para 31-mar | Quantidade de Indivíduos: 3 pessoas (3-5 min de apresen
 - **Projeto 1 - Desenvolvimento de Sistema de Agendamento Escolar**<br>
 Prazo de Entrega 1: 05-mar (5 pt) | Prazo de Entrega 2: 09-mar (3 pt)
 - **Projeto 2 - Desenvolvimento de um Protótipo de Site para Divulgação de Curso**<br>
-Prazo de Entrega 1: 31-mar (5 pt) | Prazo de Entrega 2: 07-mar (3 pt)
+Prazo de Entrega 1: 31-mar (5 pt) | Prazo de Entrega 2: 07-abr (3 pt)
 
 ### Gestão de Startup I
 - Projeto Pessoal: Apresentar os insights do Instagram das startups desenvolvidas, contendo 5 posts e 25 seguidores.
