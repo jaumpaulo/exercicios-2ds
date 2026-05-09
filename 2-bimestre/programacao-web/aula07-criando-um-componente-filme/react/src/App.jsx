@@ -1,14 +1,11 @@
-import Filme from "./Filme";
+import Filme from "./components/Filme"
 
 export default function App() {
-  return(
-    <>
-      <Filme />
-      <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Perspiciatis sunt sequi nihil alias corporis exercitationem nulla odio saepe modi, fugit vero minima architecto. Quibusdam, veniam tempore! Illum voluptatibus sint ducimus.</p>
-      <Filme />
-      <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Iste repudiandae voluptates est fuga in itaque laudantium veritatis, ab debitis, assumenda distinctio sequi dolorum. Eaque voluptate suscipit beatae ad ea obcaecati!</p>
-      <Filme />
-      <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Id quisquam eaque eum ex accusamus. Expedita sunt nostrum nam molestias aliquid, culpa magnam, temporibus aut, nesciunt dicta asperiores accusantium soluta corrupti.</p>
-    </>
+  return (
+    <div>
+      <Filme nome="Matrix" ano="1999" descricao="Um hacker descobre a verdade sobre a realidade." />
+      <Filme nome="Interestelar" ano="2014" descricao="Astronautas viajam pelo espaço em busca de um novo lar." />
+      <Filme nome="Inception" ano="2010" descricao="Um ladrão invade os sonhos das pessoas para roubar segredos." />
+    </div>
   )
 }
