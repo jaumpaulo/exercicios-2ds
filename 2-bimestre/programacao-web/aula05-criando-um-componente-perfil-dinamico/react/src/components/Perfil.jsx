@@ -7,7 +7,7 @@ export default function Perfil() {
 
   return (
     <div>
-      <h1>{usuario.nome}</h1>
+      <h1>Nome: {usuario.nome}</h1>
       <p>{usuario.idade} anos</p>
       <p>Profissão: {usuario.profissao}</p>
       <p>{usuario.idade >= 18 ? "Você é maior de idade." : "Você é menor de idade."}</p>
