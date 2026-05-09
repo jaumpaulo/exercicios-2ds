@@ -1,13 +1,15 @@
+import Perfil from "./components/Perfil"
+
 export default function App() {
   const usuario = {
-    nome: "João Paulo",
-    idade: "16",
-    profissao: "desempregado"
+    nome: "João Silva",
+    idade: 25,
+    profissao: "Desenvolvedor"
   }
 
-  return(
+  return (
     <div>
-      {usuario.idade >= 18 ? alert("Você é maior de idade.") : alert("Você é menor de idade.")}
+      <Perfil nome={usuario.nome} idade={usuario.idade} profissao={usuario.profissao} />
     </div>
   )
 }
