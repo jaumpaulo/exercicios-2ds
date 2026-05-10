@@ -5,7 +5,7 @@ import fs from "fs"
 import { describe, test, expect } from "vitest"
 
 // Lendo o conteúdo do arquivo CSS
-const css = fs.readFileSync(new URL("../styles/footer.css", import.meta.url), "utf8")
+const css = fs.readFileSync("../styles/footer.css", "utf8")
 
 describe("Footer.css", () => {
 
