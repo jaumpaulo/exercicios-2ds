@@ -1,11 +1,11 @@
-import Aluno from "./Aluno"
- 
+import Aluno from "./components/Aluno"
+
 export default function App() {
   return (
     <div>
-      <Aluno nome="Maria Silva" curso="Engenharia de Software" />
-      <Aluno nome="João Souza" curso="Ciência da Computação" />
-      <Aluno nome="Ana Lima" curso="Sistemas de Informação" />
+      <Aluno nome="João" curso="Desenvolvimento de Sistemas" />
+      <Aluno nome="Maria" curso="Informática" />
+      <Aluno nome="Pedro" curso="Redes de Computadores" />
     </div>
   )
 }

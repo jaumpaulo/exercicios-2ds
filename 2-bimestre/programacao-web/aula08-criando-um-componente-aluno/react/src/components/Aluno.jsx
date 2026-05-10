@@ -1,8 +1,8 @@
 export default function Aluno({ nome, curso }) {
   return (
     <div>
-      <p>Nome: {nome}</p>
-      <p>Curso: {curso}</p>
+      <h1>Nome do aluno: {nome}</h1>
+      <h2>Curso do aluno: {curso}</h2>
     </div>
   )
 }
