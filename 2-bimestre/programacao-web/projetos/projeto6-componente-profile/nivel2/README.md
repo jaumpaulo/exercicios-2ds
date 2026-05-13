@@ -1,4 +1,4 @@
-# 📘 PROJETO 6: COMPONENTE PROFILE
+# 📘 PROJETO 6: COMPONENTE PROFILE 
 
 # 🧩 PROBLEMA
 
@@ -77,3 +77,5 @@ O CSS deve estilizar:
 O `App.jsx` deve renderizar 3 usuários diferentes.
 
 Boas práticas! 🤙
+
+=]
