@@ -1,0 +1,19 @@
+.left {
+    display: flex;
+    font-weight: 600;
+    color: white;
+}
+
+.right {
+    display: flex;
+    font-weight: 400;
+    color: white;
+}
+
+.header-conteiner {
+    display: flex;
+    justify-content: space-between;
+    background-color: rgb(43, 43, 99);
+    margin: 0;
+    width: 100%;
+}
