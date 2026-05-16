@@ -4,7 +4,6 @@ import "./styles/ProfileCSS.css"
 
 export default function App() {
   return(
-    <>
       <div className="container">
         <Header />
 
@@ -40,6 +39,5 @@ export default function App() {
           </div>
         </div>
       </div>
-    </>
   )
 }
