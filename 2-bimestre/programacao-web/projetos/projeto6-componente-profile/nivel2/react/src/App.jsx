@@ -56,7 +56,7 @@ export default function App() {
               <UsersRound 
               style={{color: "blue"}}
               />
-              <p style={{color: "blue", fontSize: "23px"}}>Colaboradores</p>
+              <p style={{color: "blue", fontSize: "24px"}}>Colaboradores</p>
             </div>
           </div>
         </div>
