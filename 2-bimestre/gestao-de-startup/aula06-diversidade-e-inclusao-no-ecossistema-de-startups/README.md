@@ -24,3 +24,7 @@ Responda:
 3. Por que diferentes opiniões podem melhorar uma solução?
 
 Crie sua resposta abaixo:
+
+1) Incluindo, ouvindo e respeitando
+2) A exclusão e falta de comunicação
+3) Porque as pessoas podem dar uma ideia melhorada de outra ideia

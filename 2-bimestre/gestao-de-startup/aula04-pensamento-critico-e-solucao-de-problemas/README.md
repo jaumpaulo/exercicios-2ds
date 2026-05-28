@@ -101,3 +101,7 @@ Perguntas:
 4. Como evitar novamente?
 
 Crie sua resposta abaixo:
+1) A falta de organização
+2) A falta de comunicação
+3) Os membros criarem um grupo ou marcar um dia pra se reunirem para se organizarem
+4) Fazer um planejamento antes de qualquer coisa

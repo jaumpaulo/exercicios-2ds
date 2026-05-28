@@ -113,3 +113,6 @@ Responda:
 3. O que precisa desenvolver?
 
 Crie sua resposta abaixo:
+1) Engenheiro de Software
+2) Sei um pouco sobre Banco de Dados, API, Linguagem de marcação e estilização e Linguagem de programação
+3) Preciso desenvolver mais minha comunicação e trabalho em equipe

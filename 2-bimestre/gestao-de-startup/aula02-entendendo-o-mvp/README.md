@@ -89,3 +89,5 @@ Problema:
 > 
 
 Como você criaria um MVP para resolver esse problema? Escreva abaixo.
+
+Eu faria um aplicativo para os alunos instalarem em seus dispositivos e lá os professores colocariam os deveres e os prazos, quando o prazo está perto de acabar e no ultima dia ele emite alertas para o aluno fazer

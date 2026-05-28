@@ -26,3 +26,6 @@ Responda:
 3. Como essa ideia poderia ser testada rapidamente?
 
 Crie sua resposta abaixo:
+1) A falta de limpeza nas privadas
+2) ajeitar as descargas
+3) ajeitar as descargas de um banheiro para ver se vai funcionar
