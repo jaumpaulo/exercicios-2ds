@@ -10,7 +10,7 @@ import {
 
 // Lendo CSS
 const css = fs.readFileSync(
-  "src/components/Botao/style.css",
+  "./src/components/Botao/style.css",
   "utf8"
 )
 

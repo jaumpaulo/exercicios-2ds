@@ -1,9 +1,10 @@
-import "./styles/BotaoCSS.css" 
+import "./style.css" 
+import { Sword } from 'lucide-react'
 
-export default function Botoes({ texto, ...rest }) {
+export default function Botoes({ texto, icon,...rest }) {
     return(
         <>
-            <button type="submit">{texto}</button>
+            <button {...rest}>{texto}</button>
         </>
     )
 }
