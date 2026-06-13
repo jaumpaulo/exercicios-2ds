@@ -1,23 +1,50 @@
+import { useRef, useState } from "react"
 import "./style.css"
 
-export default function FormulariPersonagens({ ...rest, setNome, setClasse }) {
-    return(
-        <>
-            <form {...rest}>
-                <input
-                 type="text"
-                 onChange={(e) => {setNome(e.target.value)}} 
-                 placeholder="Digite nome" 
-                />
+export default function FormularioPersonagem({ adicionarPersonagem }) {
+  const [nome, setNome] = useState("")
+  const [classe, setClasse] = useState("")
 
-                <input 
-                 type="text" 
-                 onChange={(e) => {setClasse(e.target.value)}}
-                 placeholder="Digite classe" 
-                />
+  const nomeRef = useRef()
 
-                <button type="submit">Cadastrar Personagem</button>
-            </form>
-        </>
-    )
+  const cadastrar = (e) => {
+    e.preventDefault()
+
+    if (!nome || !classe) return
+
+    adicionarPersonagem({
+      nome,
+      classe
+    })
+
+    setNome("")
+    setClasse("")
+
+    nomeRef.current.focus()
+  }
+
+  return (
+    <form className="formulario" onSubmit={cadastrar}>
+      <label>Nome</label>
+      <input
+        ref={nomeRef}
+        type="text"
+        placeholder="Nome do personagem"
+        value={nome}
+        onChange={(e) => setNome(e.target.value)}
+      />
+
+      <label>Classe</label>
+      <input
+        type="text"
+        placeholder="Classe do personagem"
+        value={classe}
+        onChange={(e) => setClasse(e.target.value)}
+      />
+
+      <button type="submit">
+        Cadastrar Personagem
+      </button>
+    </form>
+  )
 }
