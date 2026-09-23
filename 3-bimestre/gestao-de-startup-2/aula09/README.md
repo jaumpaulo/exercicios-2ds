@@ -219,5 +219,11 @@ Ela possui um protótipo simples desenhado em papel.
 Crie:
 
 1. Uma tarefa que será dada ao usuário.
+Imagine que você recebeu um novo trabalho de Matemática. Mostre como você adicionaria essa tarefa e colocaria a data de entrega no protótipo
+
 2. Duas coisas que a equipe deverá observar.
+Se o usuário consegue encontrar facilmente onde adicionar uma nova tarefa
+Se o usuário entende como informar a data de entrega sem precisar de ajuda
+
 3. Uma pergunta para fazer depois do teste.
+O que foi mais difícil ou confuso ao tentar adicionar a tarefa?
