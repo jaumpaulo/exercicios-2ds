@@ -1,7 +1,9 @@
-function carregarConfig(a, b, c) {
-        a = process.env.SERVICO
-        b = Number(process.env.PORT)
-        c = process.env.AMBIENTE
+function carregarConfig() {
+        return {
+                servico: process.env.SERVICO || "escola-musica",
+                porta: Number(process.env.PORT) || 3000,
+                ambiente: process.env.AMBIENTE || "desenvolvimento"
+        }
 }
 
-module.exports = carregarConfig
+module.exports = { carregarConfig }
