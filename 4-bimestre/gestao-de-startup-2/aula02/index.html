@@ -1,0 +1,1346 @@
+<!doctype html>
+<html lang="pt-BR">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="theme-color" content="#f7f6f2" />
+    <meta
+      name="description"
+      content="Clareia transforma listas confusas em próximos passos possíveis."
+    />
+    <title>Clareia — menos ruído, mais feito</title>
+    <style>
+      :root {
+        color-scheme: light;
+        --paper: #f7f6f2;
+        --ink: #20231f;
+        --muted: #777c74;
+        --line: #e8e8e1;
+        --green: #c9f36b;
+        --green-dark: #42611c;
+        --lavender: #eae7fb;
+        --orange: #ff895d;
+        --card: #fff;
+        --shadow: 0 24px 70px rgba(35, 42, 28, 0.08);
+      }
+
+      * {
+        box-sizing: border-box;
+      }
+
+      body {
+        margin: 0;
+        background:
+          radial-gradient(ellipse at 79% 10%, rgba(234, 231, 251, 0.72), transparent 34rem),
+          var(--paper);
+        color: var(--ink);
+        font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+        -webkit-font-smoothing: antialiased;
+      }
+
+      button {
+        color: inherit;
+        font: inherit;
+      }
+
+      .page-shell {
+        width: min(1160px, calc(100% - 48px));
+        margin: 0 auto;
+      }
+
+      .topbar {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        padding: 28px 0;
+      }
+
+      .brand {
+        display: inline-flex;
+        align-items: center;
+        gap: 10px;
+        color: var(--ink);
+        font-size: 19px;
+        font-weight: 750;
+        letter-spacing: -0.8px;
+        text-decoration: none;
+      }
+
+      .brand-mark {
+        display: grid;
+        width: 34px;
+        height: 34px;
+        place-items: center;
+        border-radius: 12px;
+        background: var(--green);
+        color: #263416;
+      }
+
+      .brand-mark svg {
+        width: 19px;
+        height: 19px;
+      }
+
+      .top-note {
+        display: inline-flex;
+        align-items: center;
+        gap: 8px;
+        color: var(--muted);
+        font-size: 12px;
+        font-weight: 550;
+      }
+
+      .privacy-dot {
+        width: 7px;
+        height: 7px;
+        border-radius: 50%;
+        background: #83bd3d;
+        box-shadow: 0 0 0 3px rgba(131, 189, 61, 0.14);
+      }
+
+      main {
+        padding-bottom: 64px;
+      }
+
+      .hero {
+        display: grid;
+        min-height: 510px;
+        grid-template-columns: 1.05fr 0.95fr;
+        align-items: center;
+        gap: 40px;
+        padding: 38px 0 54px;
+      }
+
+      .eyebrow {
+        display: inline-flex;
+        align-items: center;
+        gap: 8px;
+        margin: 0 0 22px;
+        color: #596048;
+        font-size: 11px;
+        font-weight: 750;
+        letter-spacing: 1.7px;
+        text-transform: uppercase;
+      }
+
+      .eyebrow-icon {
+        display: grid;
+        width: 23px;
+        height: 23px;
+        place-items: center;
+        border-radius: 50%;
+        background: var(--green);
+        font-size: 13px;
+        letter-spacing: 0;
+      }
+
+      h1 {
+        max-width: 590px;
+        margin: 0;
+        font-size: clamp(50px, 6.8vw, 82px);
+        font-weight: 650;
+        letter-spacing: -6px;
+        line-height: 0.99;
+      }
+
+      h1 span {
+        position: relative;
+        display: inline-block;
+        z-index: 0;
+      }
+
+      h1 span::after {
+        position: absolute;
+        z-index: -1;
+        right: -4px;
+        bottom: 3px;
+        left: -4px;
+        height: 22px;
+        border-radius: 50%;
+        background: var(--green);
+        content: "";
+        transform: rotate(-2deg);
+      }
+
+      .hero-copy {
+        max-width: 430px;
+        margin: 24px 0 27px;
+        color: #6d726a;
+        font-size: 16px;
+        line-height: 1.75;
+      }
+
+      .primary-button,
+      .secondary-button {
+        display: inline-flex;
+        min-height: 52px;
+        align-items: center;
+        justify-content: center;
+        gap: 12px;
+        border: 0;
+        border-radius: 14px;
+        cursor: pointer;
+        font-size: 14px;
+        font-weight: 700;
+        transition: transform 160ms ease, box-shadow 160ms ease, background 160ms ease;
+      }
+
+      .primary-button {
+        padding: 0 21px;
+        background: var(--ink);
+        color: white;
+        box-shadow: 0 8px 20px rgba(32, 35, 31, 0.13);
+      }
+
+      .primary-button:hover {
+        background: #353a32;
+        box-shadow: 0 12px 24px rgba(32, 35, 31, 0.18);
+        transform: translateY(-2px);
+      }
+
+      .primary-button svg,
+      .secondary-button svg {
+        width: 17px;
+        height: 17px;
+      }
+
+      .secondary-button {
+        padding: 0 18px;
+        background: var(--green);
+        color: #263416;
+      }
+
+      .secondary-button:hover {
+        background: #bde95a;
+        transform: translateY(-2px);
+      }
+
+      .microcopy {
+        margin: 13px 0 0;
+        color: #92958e;
+        font-size: 11px;
+      }
+
+      .preview-wrap {
+        position: relative;
+        padding: 22px 15px 27px 28px;
+      }
+
+      .preview-wrap::before {
+        position: absolute;
+        top: 0;
+        right: 0;
+        bottom: 0;
+        left: 0;
+        border-radius: 38% 62% 55% 45% / 47% 43% 57% 53%;
+        background: var(--lavender);
+        content: "";
+        transform: rotate(-7deg);
+      }
+
+      .floating-tag {
+        position: absolute;
+        z-index: 2;
+        top: 3px;
+        right: -9px;
+        padding: 11px 14px;
+        border: 1px solid rgba(255, 255, 255, 0.75);
+        border-radius: 13px;
+        background: #fff;
+        box-shadow: 0 9px 24px rgba(52, 49, 92, 0.1);
+        color: #66627d;
+        font-size: 11px;
+        font-weight: 700;
+        transform: rotate(5deg);
+      }
+
+      .app-card {
+        position: relative;
+        z-index: 1;
+        overflow: hidden;
+        padding: 25px;
+        border: 1px solid rgba(255, 255, 255, 0.85);
+        border-radius: 24px;
+        background: rgba(255, 255, 255, 0.92);
+        box-shadow: 0 20px 55px rgba(52, 49, 92, 0.14);
+        transform: rotate(1.4deg);
+      }
+
+      .app-card-top,
+      .app-card-title,
+      .task-row,
+      .progress-row {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+      }
+
+      .app-card-top {
+        color: #92958e;
+        font-size: 11px;
+        font-weight: 600;
+      }
+
+      .avatar {
+        display: grid;
+        width: 28px;
+        height: 28px;
+        place-items: center;
+        border-radius: 10px;
+        background: #f2edff;
+        color: #7a69bb;
+        font-size: 12px;
+        font-weight: 750;
+      }
+
+      .app-card-title {
+        margin-top: 25px;
+      }
+
+      .app-card-title h2 {
+        margin: 0;
+        font-size: 22px;
+        letter-spacing: -0.9px;
+      }
+
+      .day-pill {
+        padding: 7px 10px;
+        border-radius: 99px;
+        background: #f4f5f0;
+        color: #777c74;
+        font-size: 10px;
+        font-weight: 650;
+      }
+
+      .progress-row {
+        margin: 20px 0 15px;
+        color: #858a80;
+        font-size: 11px;
+      }
+
+      .progress-row strong {
+        color: #657f35;
+        font-size: 12px;
+      }
+
+      .progress-track {
+        height: 7px;
+        overflow: hidden;
+        border-radius: 10px;
+        background: #eff1e8;
+      }
+
+      .progress-fill {
+        width: 45%;
+        height: 100%;
+        border-radius: inherit;
+        background: #b4df62;
+      }
+
+      .task-list {
+        display: grid;
+        gap: 10px;
+        margin-top: 17px;
+      }
+
+      .task-row {
+        justify-content: flex-start;
+        gap: 11px;
+        padding: 12px;
+        border: 1px solid #f0f0eb;
+        border-radius: 12px;
+        color: #52574e;
+        font-size: 12px;
+      }
+
+      .task-check {
+        display: grid;
+        width: 18px;
+        height: 18px;
+        flex: 0 0 18px;
+        place-items: center;
+        border: 1px solid #dfe2d8;
+        border-radius: 6px;
+        color: #fff;
+        font-size: 11px;
+      }
+
+      .task-row.done {
+        color: #9a9d96;
+        text-decoration: line-through;
+      }
+
+      .task-row.done .task-check {
+        border-color: #b8e666;
+        background: #b8e666;
+        color: #31431a;
+      }
+
+      .time-chip {
+        margin-left: auto;
+        color: #a0a39c;
+        font-size: 10px;
+      }
+
+      .app-card-footer {
+        margin-top: 17px;
+        padding-top: 15px;
+        border-top: 1px solid #f0f0eb;
+        color: #969990;
+        font-size: 10px;
+        text-align: center;
+      }
+
+      .product-section {
+        display: grid;
+        grid-template-columns: 1fr 0.9fr;
+        align-items: center;
+        gap: 36px;
+        margin: 0 0 68px;
+        padding: 25px 30px;
+        border: 1px solid #ebebe5;
+        border-radius: 20px;
+        background: rgba(255, 255, 255, 0.65);
+      }
+
+      .section-kicker {
+        margin: 0 0 8px;
+        color: #92958e;
+        font-size: 10px;
+        font-weight: 750;
+        letter-spacing: 1.5px;
+        text-transform: uppercase;
+      }
+
+      .product-section h2 {
+        margin: 0;
+        font-size: 19px;
+        letter-spacing: -0.7px;
+      }
+
+      .product-section p:last-child {
+        max-width: 400px;
+        margin: 7px 0 0;
+        color: #7d8179;
+        font-size: 12px;
+        line-height: 1.6;
+      }
+
+      .product-action {
+        display: flex;
+        align-items: flex-end;
+        flex-direction: column;
+        justify-self: end;
+        text-align: right;
+      }
+
+      .product-action #pay-button {
+        min-height: 40px;
+        margin-top: 8px;
+        padding: 0 14px;
+        border: 1px solid #e8e8e1;
+        background: #fff;
+        color: #52574e;
+        font-size: 11px;
+      }
+
+      .product-action #pay-button:hover {
+        border-color: #d4d5ca;
+        background: #f8f8f4;
+      }
+
+      .product-action .secondary-button {
+        min-height: 44px;
+        font-size: 12px;
+      }
+
+      .product-message {
+        min-height: 16px;
+        margin: 9px 0 0;
+        color: #777c74;
+        font-size: 11px;
+      }
+
+      .analytics-section {
+        padding: 38px;
+        border: 1px solid rgba(232, 232, 225, 0.9);
+        border-radius: 26px;
+        background: #fff;
+        box-shadow: var(--shadow);
+      }
+
+      .analytics-heading {
+        display: flex;
+        align-items: flex-end;
+        justify-content: space-between;
+        gap: 24px;
+        margin-bottom: 27px;
+      }
+
+      .analytics-heading .section-kicker {
+        color: #829952;
+      }
+
+      .analytics-heading h2 {
+        margin: 0;
+        font-size: clamp(28px, 4vw, 38px);
+        letter-spacing: -1.9px;
+      }
+
+      .analytics-heading p:last-child {
+        max-width: 300px;
+        margin: 8px 0 0;
+        color: #858980;
+        font-size: 12px;
+        line-height: 1.6;
+      }
+
+      .analytics-meta {
+        display: inline-flex;
+        align-items: center;
+        gap: 7px;
+        padding: 9px 12px;
+        border: 1px solid var(--line);
+        border-radius: 99px;
+        color: #777c74;
+        font-size: 10px;
+        white-space: nowrap;
+      }
+
+      .analytics-meta svg {
+        width: 14px;
+        height: 14px;
+        color: #6c8d34;
+      }
+
+      .funnel-list {
+        display: grid;
+        gap: 10px;
+      }
+
+      .funnel-stage {
+        display: grid;
+        grid-template-columns: minmax(165px, 1.15fr) minmax(120px, 2fr) 82px 105px;
+        align-items: center;
+        gap: 18px;
+        min-height: 72px;
+        padding: 12px 16px;
+        border: 1px solid #f0f0eb;
+        border-radius: 15px;
+        background: #fff;
+        transition: border-color 160ms ease, background 160ms ease;
+      }
+
+      .stage-identity {
+        display: flex;
+        align-items: center;
+        gap: 11px;
+        min-width: 0;
+      }
+
+      .stage-icon {
+        display: grid;
+        width: 35px;
+        height: 35px;
+        flex: 0 0 35px;
+        place-items: center;
+        border-radius: 11px;
+        background: #f4f5ef;
+        font-size: 16px;
+      }
+
+      .funnel-stage:nth-child(2) .stage-icon {
+        background: #f1f7e5;
+      }
+
+      .funnel-stage:nth-child(3) .stage-icon {
+        background: #f2effc;
+      }
+
+      .funnel-stage:nth-child(4) .stage-icon {
+        background: #fff2e8;
+      }
+
+      .funnel-stage:nth-child(5) .stage-icon {
+        background: #fff0ef;
+      }
+
+      .stage-label {
+        overflow: hidden;
+        font-size: 12px;
+        font-weight: 700;
+        text-overflow: ellipsis;
+        white-space: nowrap;
+      }
+
+      .stage-subtitle {
+        margin-top: 3px;
+        color: #969990;
+        font-size: 10px;
+      }
+
+      .stage-bar-track {
+        height: 9px;
+        overflow: hidden;
+        border-radius: 99px;
+        background: #f0f1eb;
+      }
+
+      .stage-bar {
+        width: 0;
+        height: 100%;
+        border-radius: inherit;
+        background: linear-gradient(90deg, #c7ee70, #9dcc43);
+        transition: width 350ms ease;
+      }
+
+      .stage-count {
+        font-size: 18px;
+        font-weight: 750;
+        letter-spacing: -0.5px;
+        text-align: right;
+        font-variant-numeric: tabular-nums;
+      }
+
+      .stage-conversion {
+        justify-self: end;
+        min-width: 91px;
+        padding: 8px 9px;
+        border-radius: 9px;
+        background: #f6f7f2;
+        color: #73796a;
+        font-size: 10px;
+        font-weight: 650;
+        text-align: center;
+      }
+
+      .stage-conversion strong {
+        color: #34382f;
+        font-size: 12px;
+      }
+
+      .funnel-stage.is-dropoff {
+        border-color: #f2c5c1;
+        background: #fff8f7;
+        box-shadow: 0 4px 14px rgba(203, 81, 72, 0.06);
+      }
+
+      .funnel-stage.is-dropoff .stage-bar {
+        background: linear-gradient(90deg, #ff9a8e, #e75e51);
+      }
+
+      .funnel-stage.is-dropoff .stage-icon {
+        background: #ffe7e4;
+      }
+
+      .funnel-stage.is-dropoff .stage-conversion {
+        background: #ffe9e6;
+        color: #b4463e;
+      }
+
+      .funnel-stage.is-dropoff .stage-conversion strong {
+        color: #b4463e;
+      }
+
+      .dropoff-callout {
+        display: flex;
+        align-items: flex-start;
+        gap: 12px;
+        margin-top: 17px;
+        padding: 14px 16px;
+        border: 1px solid #f2d4d1;
+        border-radius: 14px;
+        background: #fff8f7;
+      }
+
+      .dropoff-symbol {
+        display: grid;
+        width: 27px;
+        height: 27px;
+        flex: 0 0 27px;
+        place-items: center;
+        border-radius: 9px;
+        background: #ffe3df;
+        color: #c24d43;
+        font-size: 14px;
+      }
+
+      .dropoff-copy {
+        margin: 0;
+        color: #7c605c;
+        font-size: 11px;
+        line-height: 1.55;
+      }
+
+      .dropoff-copy strong {
+        color: #a84239;
+      }
+
+      .nps-card {
+        display: grid;
+        grid-template-columns: 1fr auto;
+        align-items: center;
+        gap: 24px;
+        margin-top: 25px;
+        padding: 22px;
+        border-radius: 18px;
+        background: #f6f5fb;
+      }
+
+      .nps-copy h3 {
+        margin: 0;
+        font-size: 15px;
+        letter-spacing: -0.35px;
+      }
+
+      .nps-copy p {
+        margin: 6px 0 0;
+        color: #83818f;
+        font-size: 11px;
+      }
+
+      .nps-scale {
+        display: flex;
+        gap: 5px;
+      }
+
+      .nps-button {
+        width: 31px;
+        height: 33px;
+        padding: 0;
+        border: 1px solid #e4e1ef;
+        border-radius: 8px;
+        background: #fff;
+        color: #79768a;
+        cursor: pointer;
+        font-size: 11px;
+        font-weight: 700;
+        transition: all 140ms ease;
+      }
+
+      .nps-button:hover {
+        border-color: #aaa0df;
+        background: #ebe8fb;
+        color: #5f548e;
+        transform: translateY(-2px);
+      }
+
+      .nps-button[aria-pressed="true"] {
+        border-color: #9c8ed8;
+        background: #ded8f5;
+        color: #4d407f;
+      }
+
+      .nps-response {
+        grid-column: 1 / -1;
+        min-height: 15px;
+        margin: -15px 0 0;
+        color: #69627f;
+        font-size: 11px;
+      }
+
+      .analytics-footer {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 16px;
+        margin-top: 24px;
+        padding-top: 19px;
+        border-top: 1px solid #f0f0eb;
+        color: #999c95;
+        font-size: 10px;
+      }
+
+      .reset-button {
+        padding: 6px 0 6px 10px;
+        border: 0;
+        background: transparent;
+        color: #858980;
+        cursor: pointer;
+        font-size: 10px;
+        text-decoration: underline;
+        text-underline-offset: 3px;
+      }
+
+      .reset-button:hover {
+        color: #c24d43;
+      }
+
+      .footer {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        padding: 23px 0 30px;
+        color: #a0a39c;
+        font-size: 10px;
+      }
+
+      .footer-mark {
+        display: inline-flex;
+        align-items: center;
+        gap: 7px;
+        color: #747970;
+        font-weight: 700;
+      }
+
+      .footer-mark .brand-mark {
+        width: 23px;
+        height: 23px;
+        border-radius: 8px;
+      }
+
+      .footer-mark .brand-mark svg {
+        width: 13px;
+        height: 13px;
+      }
+
+      @media (max-width: 800px) {
+        .hero {
+          min-height: auto;
+          grid-template-columns: 1fr 0.9fr;
+          gap: 8px;
+          padding-top: 26px;
+        }
+
+        h1 {
+          font-size: clamp(46px, 8vw, 66px);
+          letter-spacing: -4px;
+        }
+
+        .preview-wrap {
+          padding-right: 8px;
+          padding-left: 18px;
+        }
+
+        .app-card {
+          padding: 19px;
+        }
+
+        .funnel-stage {
+          grid-template-columns: minmax(145px, 1.1fr) minmax(80px, 1.5fr) 57px 95px;
+          gap: 11px;
+          padding: 11px;
+        }
+
+        .analytics-section {
+          padding: 27px;
+        }
+
+        .nps-card {
+          grid-template-columns: 1fr;
+          gap: 15px;
+        }
+
+        .nps-scale {
+          flex-wrap: wrap;
+        }
+      }
+
+      @media (max-width: 600px) {
+        .page-shell {
+          width: min(100% - 32px, 440px);
+        }
+
+        .topbar {
+          padding: 19px 0;
+        }
+
+        .top-note {
+          font-size: 10px;
+        }
+
+        .hero {
+          grid-template-columns: 1fr;
+          gap: 26px;
+          padding: 31px 0 41px;
+        }
+
+        h1 {
+          max-width: 440px;
+          font-size: clamp(53px, 15vw, 72px);
+          letter-spacing: -4.5px;
+        }
+
+        .hero-copy {
+          margin-top: 19px;
+          font-size: 14px;
+        }
+
+        .preview-wrap {
+          width: min(100%, 410px);
+          justify-self: center;
+          padding: 15px 12px 20px;
+        }
+
+        .floating-tag {
+          right: -2px;
+        }
+
+        .product-section {
+          grid-template-columns: 1fr;
+          gap: 18px;
+          margin-bottom: 43px;
+          padding: 22px;
+        }
+
+        .product-action {
+          align-items: flex-start;
+          justify-self: stretch;
+          text-align: left;
+        }
+
+        .product-message {
+          margin-bottom: 0;
+        }
+
+        .analytics-section {
+          padding: 22px 16px;
+          border-radius: 20px;
+        }
+
+        .analytics-heading {
+          align-items: flex-start;
+          flex-direction: column;
+          gap: 13px;
+          margin-bottom: 21px;
+        }
+
+        .analytics-heading h2 {
+          font-size: 30px;
+        }
+
+        .funnel-list {
+          gap: 8px;
+        }
+
+        .funnel-stage {
+          grid-template-columns: minmax(0, 1fr) 55px 83px;
+          gap: 8px;
+          min-height: 68px;
+          padding: 10px;
+        }
+
+        .stage-identity {
+          gap: 8px;
+        }
+
+        .stage-icon {
+          width: 30px;
+          height: 30px;
+          flex-basis: 30px;
+          border-radius: 9px;
+          font-size: 14px;
+        }
+
+        .stage-label {
+          font-size: 11px;
+        }
+
+        .stage-subtitle {
+          font-size: 9px;
+        }
+
+        .stage-bar-track {
+          display: none;
+        }
+
+        .stage-count {
+          font-size: 16px;
+        }
+
+        .stage-conversion {
+          min-width: 0;
+          padding: 7px 4px;
+          font-size: 9px;
+        }
+
+        .stage-conversion strong {
+          font-size: 11px;
+        }
+
+        .dropoff-callout {
+          padding: 12px;
+        }
+
+        .nps-card {
+          padding: 17px;
+        }
+
+        .nps-scale {
+          gap: 4px;
+        }
+
+        .nps-button {
+          width: 29px;
+          height: 31px;
+        }
+
+        .analytics-footer {
+          align-items: flex-start;
+          flex-direction: column;
+          gap: 9px;
+        }
+
+        .footer {
+          align-items: flex-start;
+          gap: 12px;
+          flex-direction: column;
+        }
+      }
+
+      @media (prefers-reduced-motion: reduce) {
+        *,
+        *::before,
+        *::after {
+          scroll-behavior: auto !important;
+          transition-duration: 0.01ms !important;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <div class="page-shell">
+      <header class="topbar">
+        <a class="brand" href="#" aria-label="Clareia, início">
+          <span class="brand-mark" aria-hidden="true">
+            <svg viewBox="0 0 24 24" fill="none">
+              <path d="M12 3.5 14 10l6.5 2-6.5 2-2 6.5L10 14l-6.5-2 6.5-2L12 3.5Z" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round" />
+            </svg>
+          </span>
+          clareia
+        </a>
+        <div class="top-note"><span class="privacy-dot"></span> Seu espaço, do seu jeito</div>
+      </header>
+
+      <main>
+        <section class="hero" aria-labelledby="hero-title">
+          <div class="hero-content">
+            <p class="eyebrow"><span class="eyebrow-icon">✳</span> Um respiro no meio do caos</p>
+            <h1 id="hero-title">Menos ruído.<br />Mais <span>feito.</span></h1>
+            <p class="hero-copy">
+              Tire as ideias da cabeça e transforme o dia em pequenos próximos passos.
+              Sem pressão, sem mil abas abertas. Só o que importa agora.
+            </p>
+            <button class="primary-button" id="try-button" type="button">
+              Experimentar
+              <svg viewBox="0 0 24 24" fill="none" aria-hidden="true">
+                <path d="M5 12h14m-6-6 6 6-6 6" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" />
+              </svg>
+            </button>
+            <p class="microcopy">Grátis para começar · sem cartão de crédito</p>
+          </div>
+
+          <div class="preview-wrap" aria-label="Prévia do seu dia no Clareia">
+            <div class="floating-tag">um passo de cada vez ✨</div>
+            <div class="app-card">
+              <div class="app-card-top">
+                <span>SEGUNDA-FEIRA, 19 DE OUTUBRO</span>
+                <span class="avatar" aria-label="Perfil de Ana">A</span>
+              </div>
+              <div class="app-card-title">
+                <h2>Seu dia, Ana</h2>
+                <span class="day-pill">3 coisas</span>
+              </div>
+              <div class="progress-row">
+                <span>Seu ritmo de hoje</span>
+                <strong>1 de 3</strong>
+              </div>
+              <div class="progress-track"><div class="progress-fill"></div></div>
+              <div class="task-list">
+                <div class="task-row done"><span class="task-check">✓</span> Respirar e escolher uma prioridade <span class="time-chip">5 min</span></div>
+                <div class="task-row"><span class="task-check"></span> Rascunhar aquela ideia <span class="time-chip">20 min</span></div>
+                <div class="task-row"><span class="task-check"></span> Fazer uma pausa de verdade <span class="time-chip">10 min</span></div>
+              </div>
+              <div class="app-card-footer">Um dia possível já é um ótimo dia.</div>
+            </div>
+          </div>
+        </section>
+
+        <section class="product-section" aria-labelledby="product-title">
+          <div>
+            <p class="section-kicker">Seu primeiro passo</p>
+            <h2 id="product-title">Comece pequeno. O resto vem.</h2>
+            <p>Uma lista curta, espaço para pensar e a liberdade de voltar quando quiser.</p>
+          </div>
+          <div class="product-action">
+            <button class="secondary-button" id="reuse-button" type="button">
+              Quero usar de novo
+              <svg viewBox="0 0 24 24" fill="none" aria-hidden="true">
+                <path d="M20 7v5h-5M4 17v-5h5m-3.1-4A7 7 0 0 1 18.7 7L20 12M4 12l1.3 5a7 7 0 0 0 12.8-1" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" />
+              </svg>
+            </button>
+            <button class="secondary-button" id="pay-button" type="button">
+              Eu pagaria por isso
+              <svg viewBox="0 0 24 24" fill="none" aria-hidden="true">
+                <path d="M12 3v18m5-14H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" />
+              </svg>
+            </button>
+            <p class="product-message" id="product-message" aria-live="polite"></p>
+          </div>
+        </section>
+
+        <section class="analytics-section" aria-labelledby="analytics-title">
+          <div class="analytics-heading">
+            <div>
+              <p class="section-kicker">A jornada por aqui</p>
+              <h2 id="analytics-title">Funil AARRR</h2>
+              <p>Acompanhe cada passo da descoberta ao carinho de recomendar.</p>
+            </div>
+            <div class="analytics-meta">
+              <svg viewBox="0 0 24 24" fill="none" aria-hidden="true">
+                <rect x="5" y="10" width="14" height="11" rx="2" stroke="currentColor" stroke-width="1.7" />
+                <path d="M8 10V7a4 4 0 0 1 8 0v3" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" />
+              </svg>
+              Salvo só neste navegador
+            </div>
+          </div>
+
+          <div class="funnel-list" id="funnel-list" aria-live="polite">
+            <div class="funnel-stage" data-stage="acquisition">
+              <div class="stage-identity">
+                <span class="stage-icon" aria-hidden="true">👀</span>
+                <div><div class="stage-label">Aquisição</div><div class="stage-subtitle">Abriu a página</div></div>
+              </div>
+              <div class="stage-bar-track" aria-hidden="true"><div class="stage-bar"></div></div>
+              <div class="stage-count" data-count="acquisition">0</div>
+              <div class="stage-conversion">Início do funil</div>
+            </div>
+            <div class="funnel-stage" data-stage="activation">
+              <div class="stage-identity">
+                <span class="stage-icon" aria-hidden="true">🚀</span>
+                <div><div class="stage-label">Ativação</div><div class="stage-subtitle">Clicou em Experimentar</div></div>
+              </div>
+              <div class="stage-bar-track" aria-hidden="true"><div class="stage-bar"></div></div>
+              <div class="stage-count" data-count="activation">0</div>
+              <div class="stage-conversion">—</div>
+            </div>
+            <div class="funnel-stage" data-stage="retention">
+              <div class="stage-identity">
+                <span class="stage-icon" aria-hidden="true">🔁</span>
+                <div><div class="stage-label">Retenção</div><div class="stage-subtitle">Quero usar de novo</div></div>
+              </div>
+              <div class="stage-bar-track" aria-hidden="true"><div class="stage-bar"></div></div>
+              <div class="stage-count" data-count="retention">0</div>
+              <div class="stage-conversion">—</div>
+            </div>
+            <div class="funnel-stage" data-stage="revenue">
+              <div class="stage-identity">
+                <span class="stage-icon" aria-hidden="true">💸</span>
+                <div><div class="stage-label">Receita</div><div class="stage-subtitle">Eu pagaria por isso</div></div>
+              </div>
+              <div class="stage-bar-track" aria-hidden="true"><div class="stage-bar"></div></div>
+              <div class="stage-count" data-count="revenue">0</div>
+              <div class="stage-conversion">—</div>
+            </div>
+            <div class="funnel-stage" data-stage="referral">
+              <div class="stage-identity">
+                <span class="stage-icon" aria-hidden="true">💜</span>
+                <div><div class="stage-label">Recomendação</div><div class="stage-subtitle">NPS 9 ou 10</div></div>
+              </div>
+              <div class="stage-bar-track" aria-hidden="true"><div class="stage-bar"></div></div>
+              <div class="stage-count" data-count="referral">0</div>
+              <div class="stage-conversion">—</div>
+            </div>
+          </div>
+
+          <div class="dropoff-callout" id="dropoff-callout" aria-live="polite">
+            <span class="dropoff-symbol" aria-hidden="true">↘</span>
+            <p class="dropoff-copy" id="dropoff-copy">A maior queda percentual entre etapas vai aparecer aqui conforme as pessoas avançarem pelo funil.</p>
+          </div>
+
+          <div class="nps-card">
+            <div class="nps-copy">
+              <h3>Indicaria o Clareia para alguém?</h3>
+              <p>De 0 a 10, qual a chance de recomendar? (9 ou 10 contam como recomendação)</p>
+            </div>
+            <div class="nps-scale" role="group" aria-label="Dê uma nota de 0 a 10">
+              <button class="nps-button" type="button" data-rating="0" aria-label="Nota 0" aria-pressed="false">0</button>
+              <button class="nps-button" type="button" data-rating="1" aria-label="Nota 1" aria-pressed="false">1</button>
+              <button class="nps-button" type="button" data-rating="2" aria-label="Nota 2" aria-pressed="false">2</button>
+              <button class="nps-button" type="button" data-rating="3" aria-label="Nota 3" aria-pressed="false">3</button>
+              <button class="nps-button" type="button" data-rating="4" aria-label="Nota 4" aria-pressed="false">4</button>
+              <button class="nps-button" type="button" data-rating="5" aria-label="Nota 5" aria-pressed="false">5</button>
+              <button class="nps-button" type="button" data-rating="6" aria-label="Nota 6" aria-pressed="false">6</button>
+              <button class="nps-button" type="button" data-rating="7" aria-label="Nota 7" aria-pressed="false">7</button>
+              <button class="nps-button" type="button" data-rating="8" aria-label="Nota 8" aria-pressed="false">8</button>
+              <button class="nps-button" type="button" data-rating="9" aria-label="Nota 9" aria-pressed="false">9</button>
+              <button class="nps-button" type="button" data-rating="10" aria-label="Nota 10" aria-pressed="false">10</button>
+            </div>
+            <p class="nps-response" id="nps-response" aria-live="polite"></p>
+          </div>
+
+          <div class="analytics-footer">
+            <span>Contagens acumuladas neste navegador.</span>
+            <button class="reset-button" id="reset-button" type="button">Zerar dados locais</button>
+          </div>
+        </section>
+      </main>
+
+      <footer class="footer">
+        <span class="footer-mark">
+          <span class="brand-mark" aria-hidden="true">
+            <svg viewBox="0 0 24 24" fill="none">
+              <path d="M12 3.5 14 10l6.5 2-6.5 2-2 6.5L10 14l-6.5-2 6.5-2L12 3.5Z" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round" />
+            </svg>
+          </span>
+          feito com calma, no Clareia
+        </span>
+        <span>Suas respostas ficam no seu navegador.</span>
+      </footer>
+    </div>
+
+    <script>
+      (() => {
+        const STORAGE_KEY = "clareia-aarrr-v1";
+        const stages = [
+          { key: "acquisition", label: "Aquisição" },
+          { key: "activation", label: "Ativação" },
+          { key: "retention", label: "Retenção" },
+          { key: "revenue", label: "Receita" },
+          { key: "referral", label: "Recomendação" },
+        ];
+        const defaults = {
+          acquisition: 0,
+          activation: 0,
+          retention: 0,
+          revenue: 0,
+          referral: 0,
+        };
+
+        function readData() {
+          const stored = window.localStorage.getItem(STORAGE_KEY);
+          if (stored === null) return { ...defaults };
+
+          const parsed = JSON.parse(stored);
+          if (
+            parsed === null ||
+            typeof parsed !== "object" ||
+            stages.some((stage) => !Number.isSafeInteger(parsed[stage.key]) || parsed[stage.key] < 0)
+          ) {
+            throw new Error("Os dados salvos do funil estão inválidos. Zere os dados locais para começar novamente.");
+          }
+          return parsed;
+        }
+
+        let data = readData();
+
+        function saveData() {
+          window.localStorage.setItem(STORAGE_KEY, JSON.stringify(data));
+        }
+
+        function formatCount(value) {
+          return new Intl.NumberFormat("pt-BR").format(value);
+        }
+
+        function render() {
+          const maxCount = Math.max(data.acquisition, 1);
+          let biggestDrop = null;
+
+          stages.forEach((stage, index) => {
+            const row = document.querySelector(`[data-stage="${stage.key}"]`);
+            const count = row.querySelector(`[data-count="${stage.key}"]`);
+            const conversion = row.querySelector(".stage-conversion");
+            const bar = row.querySelector(".stage-bar");
+            const current = data[stage.key];
+
+            count.textContent = formatCount(current);
+            bar.style.width = `${Math.min((current / maxCount) * 100, 100)}%`;
+            row.classList.remove("is-dropoff");
+
+            if (index === 0) {
+              conversion.textContent = "Início do funil";
+              return;
+            }
+
+            const previous = data[stages[index - 1].key];
+            if (previous === 0) {
+              conversion.textContent = "—";
+              return;
+            }
+
+            const rate = (current / previous) * 100;
+            const drop = Math.max(0, 100 - rate);
+            conversion.innerHTML = `Conversão<br /><strong>${new Intl.NumberFormat("pt-BR", {
+              maximumFractionDigits: 1,
+            }).format(rate)}%</strong>`;
+
+            if (biggestDrop === null || drop > biggestDrop.drop) {
+              biggestDrop = { drop, row, from: stages[index - 1].label, to: stage.label };
+            }
+          });
+
+          const callout = document.getElementById("dropoff-copy");
+          if (biggestDrop && biggestDrop.drop > 0) {
+            biggestDrop.row.classList.add("is-dropoff");
+            callout.innerHTML = `<strong>Maior queda: ${biggestDrop.from} → ${biggestDrop.to} (${new Intl.NumberFormat(
+              "pt-BR",
+              { maximumFractionDigits: 1 },
+            ).format(biggestDrop.drop)}%).</strong> Esta etapa está destacada em vermelho.`;
+          } else if (biggestDrop) {
+            callout.textContent = "Nenhuma queda entre etapas por enquanto — o funil está fluindo muito bem.";
+          } else {
+            callout.textContent = "A maior queda percentual entre etapas vai aparecer aqui conforme as pessoas avançarem pelo funil.";
+          }
+        }
+
+        function increment(key) {
+          data[key] += 1;
+          saveData();
+          render();
+        }
+
+        document.getElementById("try-button").addEventListener("click", () => {
+          increment("activation");
+          document.getElementById("product-title").textContent = "Que bom ter você por aqui.";
+          document.getElementById("product-message").textContent = "Seu espaço está pronto para receber uma nova ideia.";
+          document.getElementById("product-section").scrollIntoView({ behavior: "smooth", block: "center" });
+        });
+
+        document.getElementById("reuse-button").addEventListener("click", () => {
+          increment("retention");
+          document.getElementById("product-message").textContent = "Seu próximo passo já está te esperando. ✨";
+        });
+
+        document.getElementById("pay-button").addEventListener("click", () => {
+          increment("revenue");
+          document.getElementById("product-message").textContent = "Valeu por contar — sua resposta ajuda a dar forma ao Clareia.";
+        });
+
+        document.querySelectorAll(".nps-button").forEach((button) => {
+          button.addEventListener("click", () => {
+            const rating = Number(button.dataset.rating);
+            document.querySelectorAll(".nps-button").forEach((option) => {
+              option.setAttribute("aria-pressed", String(option === button));
+            });
+            if (rating >= 9) increment("referral");
+            document.getElementById("nps-response").textContent =
+              rating >= 9
+                ? "Que alegria! Sua nota entrou como recomendação. 💜"
+                : "Obrigado pela sinceridade — sua nota também ajuda a gente a melhorar.";
+          });
+        });
+
+        document.getElementById("reset-button").addEventListener("click", () => {
+          if (!window.confirm("Quer mesmo zerar todas as contagens do funil neste navegador?")) return;
+          data = { ...defaults };
+          saveData();
+          render();
+          document.getElementById("product-title").textContent = "Comece pequeno. O resto vem.";
+          document.getElementById("product-message").textContent = "";
+          document.getElementById("nps-response").textContent = "";
+          document.querySelectorAll(".nps-button").forEach((button) => button.setAttribute("aria-pressed", "false"));
+        });
+
+        document.querySelectorAll(".task-row").forEach((task) => {
+          task.addEventListener("click", () => {
+            task.classList.toggle("done");
+            const check = task.querySelector(".task-check");
+            check.textContent = task.classList.contains("done") ? "✓" : "";
+          });
+        });
+
+        increment("acquisition");
+      })();
+    </script>
+  </body>
+</html>
