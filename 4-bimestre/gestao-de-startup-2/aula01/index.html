@@ -1,0 +1,401 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta name="theme-color" content="#f4f2ec">
+	<title>RPGDock | Pesquisa NPS</title>
+	<style>
+		:root {
+			color-scheme: light;
+			--ink: #20251f;
+			--muted: #6d746b;
+			--paper: #f4f2ec;
+			--panel: #fffefa;
+			--line: #deded3;
+			--green: #26734d;
+			--green-dark: #174d34;
+			--lime: #d9ee88;
+			--coral: #e9795f;
+			--gold: #d9aa42;
+		}
+
+		* { box-sizing: border-box; }
+
+		body {
+			margin: 0;
+			min-height: 100vh;
+			background-color: var(--paper);
+			background-image: radial-gradient(#c7c9b8 0.7px, transparent 0.7px);
+			background-size: 18px 18px;
+			color: var(--ink);
+			font-family: "Trebuchet MS", "Segoe UI", sans-serif;
+		}
+
+		.page {
+			width: min(1060px, calc(100% - 40px));
+			margin: 0 auto;
+			padding: 34px 0 56px;
+		}
+
+		.topbar {
+			display: flex;
+			align-items: center;
+			justify-content: space-between;
+			gap: 16px;
+			padding-bottom: 18px;
+			border-bottom: 1px solid var(--line);
+		}
+
+		.brand {
+			display: flex;
+			align-items: center;
+			gap: 10px;
+			font-size: 14px;
+			font-weight: 800;
+			letter-spacing: 0.08em;
+			text-transform: uppercase;
+		}
+
+		.brand-mark {
+			display: grid;
+			width: 34px;
+			aspect-ratio: 1;
+			place-items: center;
+			border-radius: 10px;
+			background: var(--green-dark);
+			color: var(--lime);
+			font-size: 19px;
+		}
+
+		.survey-tag {
+			color: var(--muted);
+			font-size: 12px;
+			font-weight: 700;
+			letter-spacing: 0.12em;
+			text-transform: uppercase;
+		}
+
+		main { padding-top: 60px; }
+
+		.intro {
+			max-width: 720px;
+			margin-bottom: 34px;
+			animation: rise-in 500ms ease-out both;
+		}
+
+		.eyebrow {
+			margin: 0 0 12px;
+			color: var(--green);
+			font-size: 12px;
+			font-weight: 800;
+			letter-spacing: 0.16em;
+			text-transform: uppercase;
+		}
+
+		h1 {
+			margin: 0;
+			font-family: Georgia, "Times New Roman", serif;
+			font-size: clamp(38px, 6vw, 66px);
+			font-weight: 500;
+			line-height: 1.03;
+		}
+
+		.description {
+			max-width: 620px;
+			margin: 18px 0 0;
+			color: #555d53;
+			font-size: 17px;
+			line-height: 1.6;
+		}
+
+		.layout {
+			display: grid;
+			grid-template-columns: minmax(0, 1.45fr) minmax(280px, 0.8fr);
+			align-items: start;
+			gap: 18px;
+		}
+
+		.survey, .results {
+			border: 1px solid var(--line);
+			border-radius: 8px;
+			background: var(--panel);
+			box-shadow: 0 12px 32px #303b2410;
+		}
+
+		.survey { padding: 28px; animation: rise-in 600ms 80ms ease-out both; }
+
+		.section-heading {
+			margin: 0;
+			font-family: Georgia, "Times New Roman", serif;
+			font-size: 25px;
+			font-weight: 500;
+			line-height: 1.25;
+		}
+
+		.helper {
+			margin: 9px 0 21px;
+			color: var(--muted);
+			font-size: 14px;
+		}
+
+		.rating-options {
+			display: grid;
+			grid-template-columns: repeat(11, minmax(0, 1fr));
+			gap: 7px;
+			padding: 0;
+			border: 0;
+			margin: 0;
+		}
+
+		.rating-options legend {
+			position: absolute;
+			width: 1px;
+			height: 1px;
+			overflow: hidden;
+			clip: rect(0, 0, 0, 0);
+			white-space: nowrap;
+			clip-path: inset(50%);
+		}
+
+		.rating { position: relative; }
+		.rating input { position: absolute; opacity: 0; }
+
+		.rating label {
+			display: grid;
+			min-width: 0;
+			aspect-ratio: 1;
+			place-items: center;
+			border: 1px solid var(--line);
+			border-radius: 6px;
+			background: #fff;
+			cursor: pointer;
+			font-size: 15px;
+			font-weight: 800;
+			transition: background 140ms ease, border-color 140ms ease, color 140ms ease, transform 140ms ease;
+		}
+
+		.rating label:hover { transform: translateY(-2px); border-color: var(--green); }
+		.rating input:focus-visible + label { outline: 3px solid #8cad54; outline-offset: 3px; }
+		.rating input:checked + label { border-color: var(--green-dark); background: var(--green-dark); color: white; }
+
+		.scale-labels {
+			display: flex;
+			justify-content: space-between;
+			margin-top: 10px;
+			color: var(--muted);
+			font-size: 12px;
+		}
+
+		.submit-row {
+			display: flex;
+			align-items: center;
+			gap: 14px;
+			margin-top: 25px;
+		}
+
+		.submit-button {
+			min-height: 46px;
+			padding: 0 20px;
+			border: 0;
+			border-radius: 6px;
+			background: var(--green-dark);
+			color: white;
+			cursor: pointer;
+			font: inherit;
+			font-size: 14px;
+			font-weight: 800;
+			transition: background 140ms ease, transform 140ms ease;
+		}
+
+		.submit-button:hover { background: var(--green); transform: translateY(-1px); }
+		.submit-button:focus-visible { outline: 3px solid #8cad54; outline-offset: 3px; }
+
+		.feedback { min-height: 20px; margin: 0; color: var(--green-dark); font-size: 13px; }
+
+		.results { padding: 25px; animation: rise-in 700ms 140ms ease-out both; }
+
+		.results-top {
+			display: flex;
+			align-items: baseline;
+			justify-content: space-between;
+			gap: 12px;
+			padding-bottom: 18px;
+			border-bottom: 1px solid var(--line);
+		}
+
+		.results-title { margin: 0; font-size: 14px; font-weight: 800; }
+		.response-count { color: var(--muted); font-size: 12px; }
+
+		.nps-score {
+			display: flex;
+			align-items: baseline;
+			gap: 8px;
+			padding: 21px 0 18px;
+		}
+
+		.nps-score strong {
+			color: var(--green-dark);
+			font-family: Georgia, "Times New Roman", serif;
+			font-size: 54px;
+			font-weight: 500;
+			line-height: 1;
+		}
+
+		.nps-score span { color: var(--muted); font-size: 13px; }
+
+		.metric-list { display: grid; gap: 12px; margin: 0; }
+		.metric { display: flex; align-items: center; justify-content: space-between; gap: 12px; }
+		.metric dt { display: flex; align-items: center; gap: 9px; color: #4f574e; font-size: 13px; }
+		.metric dd { margin: 0; font-size: 14px; font-weight: 800; }
+
+		.dot { width: 9px; aspect-ratio: 1; border-radius: 50%; }
+		.dot.promoters { background: var(--green); }
+		.dot.neutrals { background: var(--gold); }
+		.dot.detractors { background: var(--coral); }
+
+		.formula {
+			margin: 21px 0 0;
+			padding-top: 15px;
+			border-top: 1px solid var(--line);
+			color: var(--muted);
+			font-size: 11px;
+			line-height: 1.5;
+		}
+
+		@keyframes rise-in {
+			from { opacity: 0; transform: translateY(10px); }
+			to { opacity: 1; transform: translateY(0); }
+		}
+
+		@media (max-width: 760px) {
+			.page { width: min(100% - 28px, 560px); padding-top: 20px; }
+			main { padding-top: 42px; }
+			.layout { grid-template-columns: 1fr; }
+			.survey { padding: 22px 18px; }
+			.results { padding: 22px; }
+		}
+
+		@media (max-width: 420px) {
+			.survey-tag { font-size: 10px; }
+			.rating-options { gap: 4px; }
+			.rating label { font-size: 13px; }
+			.submit-row { align-items: flex-start; flex-direction: column; }
+		}
+
+		@media (prefers-reduced-motion: reduce) {
+			*, *::before, *::after { animation-duration: 0.01ms !important; transition-duration: 0.01ms !important; }
+		}
+	</style>
+</head>
+<body>
+	<div class="page">
+		<header class="topbar">
+			<div class="brand"><span class="brand-mark" aria-hidden="true">R</span> RPGDock</div>
+			<span class="survey-tag">Pesquisa de recomendação</span>
+		</header>
+
+		<main>
+			<section class="intro" aria-labelledby="page-title">
+				<p class="eyebrow">Sua opinião ajuda a melhorar</p>
+				<h1 id="page-title">Mais aventuras,<br>melhores encontros.</h1>
+				<p class="description">O RPGDock é o app que reúne ferramentas para organizar suas aventuras de RPG e manter cada sessão no rumo.</p>
+			</section>
+
+			<div class="layout">
+				<section class="survey" aria-labelledby="question-title">
+					<h2 class="section-heading" id="question-title">De 0 a 10, quanto você recomendaria este app para um amigo?</h2>
+					<p class="helper">Escolha uma nota. Leva só um instante.</p>
+
+					<form id="nps-form">
+						<fieldset class="rating-options">
+							<legend>Selecione uma nota de 0 a 10</legend>
+							<div class="rating"><input type="radio" id="rating-0" name="rating" value="0"><label for="rating-0">0</label></div>
+							<div class="rating"><input type="radio" id="rating-1" name="rating" value="1"><label for="rating-1">1</label></div>
+							<div class="rating"><input type="radio" id="rating-2" name="rating" value="2"><label for="rating-2">2</label></div>
+							<div class="rating"><input type="radio" id="rating-3" name="rating" value="3"><label for="rating-3">3</label></div>
+							<div class="rating"><input type="radio" id="rating-4" name="rating" value="4"><label for="rating-4">4</label></div>
+							<div class="rating"><input type="radio" id="rating-5" name="rating" value="5"><label for="rating-5">5</label></div>
+							<div class="rating"><input type="radio" id="rating-6" name="rating" value="6"><label for="rating-6">6</label></div>
+							<div class="rating"><input type="radio" id="rating-7" name="rating" value="7"><label for="rating-7">7</label></div>
+							<div class="rating"><input type="radio" id="rating-8" name="rating" value="8"><label for="rating-8">8</label></div>
+							<div class="rating"><input type="radio" id="rating-9" name="rating" value="9"><label for="rating-9">9</label></div>
+							<div class="rating"><input type="radio" id="rating-10" name="rating" value="10"><label for="rating-10">10</label></div>
+						</fieldset>
+						<div class="scale-labels" aria-hidden="true"><span>De jeito nenhum</span><span>Com certeza</span></div>
+						<div class="submit-row">
+							<button class="submit-button" type="submit">Enviar resposta</button>
+							<p class="feedback" id="feedback" role="status" aria-live="polite"></p>
+						</div>
+					</form>
+				</section>
+
+				<aside class="results" aria-labelledby="results-title">
+					<div class="results-top">
+						<h2 class="results-title" id="results-title">Resultado geral</h2>
+						<span class="response-count" id="response-count">0 respostas</span>
+					</div>
+					<div class="nps-score"><strong id="nps-score">--</strong><span>NPS</span></div>
+					<dl class="metric-list">
+						<div class="metric"><dt><span class="dot promoters"></span>Promotores <span>(9–10)</span></dt><dd id="promoters-count">0</dd></div>
+						<div class="metric"><dt><span class="dot neutrals"></span>Neutros <span>(7–8)</span></dt><dd id="neutrals-count">0</dd></div>
+						<div class="metric"><dt><span class="dot detractors"></span>Detratores <span>(0–6)</span></dt><dd id="detractors-count">0</dd></div>
+					</dl>
+					<p class="formula">NPS = percentual de promotores − percentual de detratores</p>
+				</aside>
+			</div>
+		</main>
+	</div>
+
+	<script>
+		const STORAGE_KEY = "rpgdock-nps-responses";
+		const form = document.querySelector("#nps-form");
+		const feedback = document.querySelector("#feedback");
+
+		function loadResponses() {
+			try {
+				const savedResponses = JSON.parse(localStorage.getItem(STORAGE_KEY) || "[]");
+				return Array.isArray(savedResponses)
+					? savedResponses.filter((score) => Number.isInteger(score) && score >= 0 && score <= 10)
+					: [];
+			} catch {
+				return [];
+			}
+		}
+
+		function updateResults(responses) {
+			const promoters = responses.filter((score) => score >= 9).length;
+			const neutrals = responses.filter((score) => score >= 7 && score <= 8).length;
+			const detractors = responses.filter((score) => score <= 6).length;
+			const nps = responses.length === 0
+				? "--"
+				: Math.round((promoters / responses.length - detractors / responses.length) * 100);
+
+			document.querySelector("#response-count").textContent = `${responses.length} ${responses.length === 1 ? "resposta" : "respostas"}`;
+			document.querySelector("#promoters-count").textContent = promoters;
+			document.querySelector("#neutrals-count").textContent = neutrals;
+			document.querySelector("#detractors-count").textContent = detractors;
+			document.querySelector("#nps-score").textContent = nps;
+		}
+
+		let responses = loadResponses();
+		updateResults(responses);
+
+		form.addEventListener("submit", (event) => {
+			event.preventDefault();
+			const selectedScore = form.querySelector('input[name="rating"]:checked');
+
+			if (!selectedScore) {
+				feedback.textContent = "Selecione uma nota antes de enviar.";
+				return;
+			}
+
+			responses.push(Number(selectedScore.value));
+			localStorage.setItem(STORAGE_KEY, JSON.stringify(responses));
+			updateResults(responses);
+			feedback.textContent = "Resposta registrada. Obrigado!";
+			form.reset();
+		});
+	</script>
+</body>
+</html>
